@@ -10,19 +10,19 @@ end
 function love.update(dt)
 
         if love.keyboard.isDown('right') then
-                player.x = player.x + player.speed * dt
+                player.x = player.x + player.speed
         end
 
         if love.keyboard.isDown('left') then
-                player.x = player.x - player.speed * dt
+                player.x = player.x - player.speed
         end
 
         if love.keyboard.isDown('down') then
-                player.y = player.y + player.speed * dt
+                player.y = player.y + player.speed
         end
 
         if love.keyboard.isDown('up') then
-                player.y = player.y - player.speed * dt
+                player.y = player.y - player.speed
         end
 
 end
