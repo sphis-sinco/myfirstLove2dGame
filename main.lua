@@ -1,6 +1,9 @@
 function love.load()
         anim8 = require 'libs/anim8'
+        sti = require 'libs/sti'
         love.graphics.setDefaultFilter('nearest', 'nearest')
+
+        gameMap = sti('maps/testMap.lua')
 
         player = {}
         player.speed = 1
@@ -52,5 +55,6 @@ function love.update(dt)
 end
 
 function love.draw()
+        gameMap:draw()
         player.anim:draw(player.sprite, player.x, player.y, nil, 2)
 end
