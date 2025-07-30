@@ -1,7 +1,7 @@
 function love.load()
         player = {}
 
-        player.speed = 4
+        player.speed = 5
 
         player.x = 400
         player.y = 200
