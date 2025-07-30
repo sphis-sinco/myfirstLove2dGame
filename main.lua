@@ -1,4 +1,6 @@
 function love.load()
+        anim8 = require 'libs/anim8'
+
         player = {}
         player.speed = 1
         player.x = 400
