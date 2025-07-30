@@ -1,10 +1,11 @@
 function love.load()
         anim8 = require 'libs/anim8'
         sti = require 'libs/sti'
-        cam = require 'libs/hump/camera'
+        camlib = require 'libs/hump/camera'
         love.graphics.setDefaultFilter('nearest', 'nearest')
 
         gameMap = sti('maps/testMap.lua')
+        cam = camlib()
 
         player = {}
         player.speed = 1
@@ -53,11 +54,13 @@ function love.update(dt)
         else
                 player.anim:gotoFrame(2)
         end
+
+        cam:lookAt(player.x, player.y)
 end
 
 function love.draw()
         cam:attach()
-                gameMap:drawLayer(gameMap.layers["Tile layer 1"])
+                gameMap:drawLayer(gameMap.layers['Tile Layer 1'])
                 player.anim:draw(player.sprite, player.x, player.y, nil, 2)
         cam:detach()
 end
