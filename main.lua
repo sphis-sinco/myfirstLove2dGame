@@ -1,7 +1,7 @@
 function love.load()
         player = {}
 
-        player.speed = 5
+        player.speed = 3
 
         player.x = 400
         player.y = 200
@@ -32,5 +32,5 @@ function love.draw()
         love.graphics.rectangle('fill', 0, 0, 1280, 720)
 
         love.graphics.setColor(255,255,255,255)
-        love.graphics.circle('fill', player.x, player.y, 100)
+        love.graphics.circle('fill', player.x, player.y, 25)
 end
