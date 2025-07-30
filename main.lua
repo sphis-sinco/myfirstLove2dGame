@@ -1,6 +1,7 @@
 function love.load()
         anim8 = require 'libs/anim8'
         sti = require 'libs/sti'
+        cam = require 'libs/hump/camera'
         love.graphics.setDefaultFilter('nearest', 'nearest')
 
         gameMap = sti('maps/testMap.lua')
@@ -55,6 +56,8 @@ function love.update(dt)
 end
 
 function love.draw()
-        gameMap:draw()
-        player.anim:draw(player.sprite, player.x, player.y, nil, 2)
+        cam:attach()
+                gameMap:draw()
+                player.anim:draw(player.sprite, player.x, player.y, nil, 2)
+        cam:detach()
 end
