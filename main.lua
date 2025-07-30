@@ -10,31 +10,47 @@ function love.load()
         player.sprite = love.graphics.newImage('sprites/player.png')
         player.grid = anim8.newGrid(16, 16, player.sprite:getWidth(), player.sprite:getHeight())
         player.animations = {}
-        player.animations.down = anim8.newAnimation( player.grid('1-3', 1), 0.2)
+        player.animations.down = anim8.newAnimation(player.grid('1-3', 1), 0.2)
+        player.animations.side = anim8.newAnimation(player.grid('1-3', 2), 0.2)
+        player.animations.up = anim8.newAnimation(player.grid('1-3', 3), 0.2)
+
+        player.anim = player.animations.down
 end
 
 function love.update(dt)
+        local playerMoving = false
+
         if love.keyboard.isDown('right') then
+                playerMoving = true
+                player.anim = player.animations.side
                 player.x = player.x + player.speed
         end
 
         if love.keyboard.isDown('left') then
+                playerMoving = true
+                player.anim = player.animations.side
                 player.x = player.x - player.speed
         end
 
         if love.keyboard.isDown('down') then
+                playerMoving = true
+                player.anim = player.animations.down
                 player.y = player.y + player.speed
         end
 
         if love.keyboard.isDown('up') then
+                playerMoving = true
+                player.anim = player.animations.up
                 player.y = player.y - player.speed
+        end
+
+        if playerMoving then
+                player.anim:update(dt)
+        else
+                player.anim:gotoFrame(2)
         end
 end
 
 function love.draw()
-        love.graphics.setColor(0, 255, 0, 255)
-        love.graphics.rectangle('fill', 0, 0, 1280, 720)
-        love.graphics.setColor(255, 255, 255, 255)
-
-        player.animations.down:draw(player.sprite, player.x, player.y, nil, 2)
+        player.anim:draw(player.sprite, player.x, player.y, nil, 2)
 end
