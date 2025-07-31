@@ -56,11 +56,31 @@ function love.update(dt)
         end
 
         cam:lookAt(player.x, player.y)
+
+        local w = love.graphics.getWidth()
+        local h = love.graphics.getHeight()
+
+        if cam.x < w / 2 then
+                cam.x = w / 2
+        end
+        if cam.y < h / 2 then
+                cam.y = h / 2
+        end
+
+        local mapW = gameMap.width * gameMap.tilewidth
+        local mapH = gameMap.height * gameMap.tileheight
+
+        if cam.x > (mapW - w/2) then
+                cam.x = (mapW - w/2)
+        end
+        if cam.y > (mapH - h/2) then
+                cam.y = (mapH - h/2)
+        end
 end
 
 function love.draw()
         cam:attach()
                 gameMap:drawLayer(gameMap.layers['Tile Layer 1'])
-                player.anim:draw(player.sprite, player.x, player.y, nil, 2, nil, 8)
+                player.anim:draw(player.sprite, player.x, player.y, nil, 2, 2, 8, 8)
         cam:detach()
 end
